@@ -26,7 +26,21 @@ h1{font-family:'Playfair Display',serif;font-size:34px;line-height:1.12;letter-s
 .overlay{position:fixed;inset:0;background:#190c17c9;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.overlay.active{display:flex}.modal{width:min(100%,390px);background:#fff9fb;border:2px solid #f2b0c8;border-radius:22px;max-height:85vh;overflow:auto;box-shadow:0 25px 75px #17010f55}.modal-header{background:linear-gradient(100deg,#e54a83,#ae164f);padding:18px;color:white;display:flex;align-items:center;justify-content:space-between;gap:8px}.modal-header h2{font-size:19px;margin:0}.close{background:#ffffff30;border:1px solid #ffffff70;color:white;border-radius:50%;height:30px;width:30px;cursor:pointer;font-size:17px}.modal-body{padding:22px;color:#443b43;font-size:14px;line-height:1.65}.modal-body p:first-child{margin-top:0}.modal-body a{color:#b20f50;overflow-wrap:anywhere}.action{display:inline-block;background:#c61b60;color:white!important;border:0;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;text-align:center}.line{border-bottom:1px solid #f2d5df;padding:7px 0}.info{background:#fff0f6;border-radius:13px;padding:12px}.qr-img{display:block;margin:10px auto;max-width:100%;width:205px;height:205px}.smallnote{font-size:12px;color:#836872}
 @media(max-width:490px){body{background:#fff2f7}.shell{margin:0 auto;padding:0;border:0;border-radius:0;box-shadow:none;background:none;max-width:430px}.screen{border-radius:0;min-height:100dvh}.header{margin-top:-89px}.banner{height:195px}}@media(max-width:340px){h1{font-size:29px}.tagline{font-size:30px}.circle{height:62px;width:62px}.menu{padding-left:12px;padding-right:12px}.cta b{font-size:18px}}
 </style>
-</head>
+</head> 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(function () {
+        console.log("Rosas de Lima está lista para instalarse.");
+      })
+      .catch(function (error) {
+        console.error("Error al registrar la aplicación:", error);
+      });
+  });
+}
+</script>
 <body>
 <main class="shell"><div class="screen">
   <div class="banner" role="img" aria-label="Rosas rosadas"></div>

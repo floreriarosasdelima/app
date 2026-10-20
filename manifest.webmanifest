@@ -1,0 +1,24 @@
+
+{
+  "name": "Rosas de Lima Florería",
+  "short_name": "Rosas de Lima",
+  "description": "Flores que hablan por ti",
+  "lang": "es-PE",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff1f5",
+  "theme_color": "#bd1956",
+  "icons": [
+    {
+      "src": "./icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "./icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

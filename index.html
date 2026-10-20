@@ -93,7 +93,7 @@ if ("serviceWorker" in navigator) {
    <button type="button" data-modal="services"><span class="circle"><i class="fa-solid fa-bell-concierge"></i></span><strong>Servicios</strong><small>Lo que ofrecemos</small></button>
   </nav>
   <div class="cta-wrap"><button type="button" class="cta" id="shopCta"><i class="fa-solid fa-cart-shopping"></i><span><b>HAZ TU PEDIDO</b><small>TIENDA ONLINE</small></span><i class="fa-solid fa-chevron-right" style="font-size:19px"></i></button></div>
-  <div class="bottom"><button id="saveContact" type="button"><i class="fa-solid fa-user-plus"></i><span>Guardar<br>Contacto</span></button><button data-modal="qr" type="button"><i class="fa-solid fa-qrcode"></i><span>QR<br>Compartir</span></button></div>
+  <div class="bottom"><button id="saveContact" type="button"><i class="fa-solid fa-user-plus"></i><span>Cómo<br>Guardar</span></button><button data-modal="qr" type="button"><i class="fa-solid fa-qrcode"></i><span>QR<br>Compartir</span></button></div>
   <div class="footer"><i class="fa-solid fa-heart"></i> Rosas de Lima · Flores que hablan por ti</div>
 </div></main>
 <div class="overlay" id="overlay" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><h2 id="modalTitle">Información</h2><button class="close" id="closeModal" type="button" aria-label="Cerrar">×</button></div><div class="modal-body" id="modalBody"></div></section></div>
@@ -117,6 +117,23 @@ function shop(){if(TIENDA_URL){window.open(TIENDA_URL,'_blank','noopener,norefer
 document.getElementById('shopIcon').addEventListener('click',shop);document.getElementById('shopCta').addEventListener('click',shop);
 function qr(){const link=location.protocol==='https:'||location.protocol==='http:'?location.href:WHATSAPP_CATALOGO;const src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=12&data='+encodeURIComponent(link);showModal('Compartir tarjeta','<p>Escanea para compartir nuestra tarjeta digital'+(location.protocol==='file:'?' (por ahora el QR abre WhatsApp)':'')+'.</p><img class="qr-img" alt="Código QR de Rosas de Lima" src="'+src+'"><p class="smallnote">Para compartir esta tarjeta mediante QR, publícala primero en una dirección web.</p>')}
 document.querySelectorAll('[data-modal]').forEach(btn=>btn.addEventListener('click',()=>{const kind=btn.dataset.modal;if(kind==='qr')return qr();if(kind==='hours')return showModal('Horario de atención','<p>El horario de atención aún está por confirmar.</p><a class="action" target="_blank" rel="noopener" href="https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent('Hola, ¿me podrían indicar su horario de atención?')+'">Consultar horario</a>');if(kind==='services')return showModal('Nuestros servicios','<p>En Rosas de Lima te ayudamos a encontrar flores y arreglos para expresar lo que sientes.</p><p>Consulta nuestro catálogo, opciones disponibles, precios y entrega directamente con la florería.</p><a class="action" target="_blank" rel="noopener" href="'+WHATSAPP_CATALOGO+'">Consultar catálogo</a>');if(kind==='mail')return CORREO?location.href='mailto:'+CORREO:showModal('Correo electrónico','<p>Aún no se ha configurado un correo de contacto.</p><p>Por ahora, escríbenos por WhatsApp al <b>+51 970 466 563</b>.</p>');if(kind==='social'){const net=btn.dataset.network;const url=net==='Instagram'?INSTAGRAM_URL:FACEBOOK_URL;if(url)window.open(url,'_blank','noopener,noreferrer');else showModal(net,'<p>El enlace oficial de '+net+' está pendiente de configurar.</p>')}}));
-document.getElementById('saveContact').addEventListener('click',()=>{const vcard=['BEGIN:VCARD','VERSION:3.0','FN:Rosas de Lima Florería','ORG:Rosas de Lima Florería','TEL;TYPE=WORK,VOICE:+51922175593','TEL;TYPE=CELL:+51970466563','ADR;TYPE=WORK:;;Av. Metropolitana 407;Comas;Lima;;;Perú','NOTE:Flores que hablan por ti','END:VCARD'].join('\r\n');const blob=new Blob([vcard],{type:'text/vcard;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Rosas_de_Lima_Floreria.vcf';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+
+document.getElementById('saveContact').addEventListener('click', () => {
+  showModal('Cómo Guardar', `
+    <p>¡Ten los datos de Rosas de Lima siempre a mano! Sigue estos sencillos pasos:</p>
+
+    <h3>Para iPhone (Safari)</h3>
+    <ol>
+      <li>Toca el icono de <b>Compartir</b>.</li>
+      <li>Busca y selecciona <b>“Agregar a inicio”</b> o <b>“Añadir a pantalla de inicio”</b>.</li>
+    </ol>
+
+    <h3>Para Android (Chrome)</h3>
+    <ol>
+      <li>Toca el menú de los <b>tres puntos (⋮)</b>.</li>
+      <li>Elige <b>“Instalar aplicación”</b> o <b>“Agregar a pantalla principal”</b>.</li>
+    </ol>
+  `);
+});
 </script>
 </body></html>

@@ -41,6 +41,20 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(function () {
+        console.log("Rosas de Lima está lista para instalarse.");
+      })
+      .catch(function (error) {
+        console.error("Error al registrar la aplicación:", error);
+      });
+  });
+}
+</script>
 <body>
 <main class="shell"><div class="screen">
   <div class="banner" role="img" aria-label="Rosas rosadas"></div>
